@@ -177,10 +177,12 @@ function mergeEventHandlers(ourHandler: Function, theirHandler: Function) {
 
       makeEventPreventable(baseUIEvent);
 
+      console.log('theirHandler');
       const result = theirHandler(baseUIEvent);
 
       if (!baseUIEvent.baseUIHandlerPrevented) {
         ourHandler?.(baseUIEvent);
+        console.log('ourHandler');
       }
 
       return result;

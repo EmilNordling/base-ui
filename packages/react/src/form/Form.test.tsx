@@ -35,6 +35,27 @@ describe('<Form />', () => {
     expect(onSubmit.called).to.equal(false);
   });
 
+  it.only('does not invoke ', async () => {
+    const onSubmit = spy();
+
+    const { user } = render(
+      <Form onSubmit={onSubmit}>
+        <Field.Root>
+          <Field.Control required />
+          <Field.Error data-testid="error" />
+        </Field.Root>
+        <button>Submit</button>
+      </Form>,
+    );
+
+    const submit = screen.getByRole('button');
+
+    await user.click(submit);
+
+    expect(screen.getByTestId('error')).not.to.equal(null);
+    expect(onSubmit.called).to.equal(false);
+  });
+
   describe('prop: errors', () => {
     function App() {
       const [errors, setErrors] = React.useState<Form.Props['errors']>({

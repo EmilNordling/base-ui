@@ -64,6 +64,7 @@ export const Form = React.forwardRef(function Form(
       {
         noValidate: true,
         onSubmit(event) {
+          console.log('onSubmit form');
           let values = Array.from(formRef.current.fields.values());
 
           // Async validation isn't supported to stop the submit event.
